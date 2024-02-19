@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+		<script src="https://www.jq22.com/jquery/jquery-3.3.1.js"></script>
+		<title>招生信息查询</title>
+		<link rel="shortcut icon" href="#" />
+		<style>
+		    *{
+	margin: 0;
+	padding: 0;
+	text-underline: none;
+	list-style: none;
+}
+body::-webkit-scrollbar {
+  width: 2px;
+}
+
+body{
+    overflow-x:hidden ;
+}
+body::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 1px rgba(136, 136, 136, 0.3);
+  background-color: rgb(238, 241, 245);
+}
+.bigbox{
+	width: 90%;
+	margin: 3% auto;
+	text-align: center;
+}
+h1{
+	font-size: 1.6em;
+        }
+.search{
+	width: 60%;
+	height: 30px;
+	outline: none;
+	margin: 1% 0;
+	border-radius: 10px;
+	text-indent: 1em;
+	border: 2px solid black;
+	transition: 0.4s;
+}
+.search:hover{
+	border-color:#00CC6A ;
+}
+.but{
+    margin-top: 3%;
+	width: 7.25rem;
+	height: 2.0rem;
+	border-radius: 5px;
+	background: #00CC6A;
+	border: none;
+	color: white;
+	transition: 0.2s;
+}
+.but:hover{
+	color: black;
+}
+.box{
+	width: 100%;
+	height: 500px;
+	border: 1px black dashed;
+	margin-top: 3%;
+}
+.lbox li{
+    float: left;
+    margin: 3%;
+    cursor: pointer;
+}
+.lbox li a{
+    color: black;
+    text-decoration: none;
+}
+.lbox li a:hover{
+    color: salmon;
+}
+.red{
+    color: red;
+    font-size:1.3em;
+}
+	</style>
+	</head>
+	<body>
+		<div class="bigbox">
+			<h1>2024年普通专升本各院校<bt style="color:salmon">考试信息</bt>快速查询</h1>
+			<p style="font-size=1.5em">关于安徽省专升本详情问题可咨询微信:<black style="color:blue;font-size:1.8em;">codedocky</black></p>
+			<input type="<search></search>" class="search" placeholder="请输入要搜索的院校...">
+			<input id='hideinp' type="hidden"/>
+			<input type="button"  value="快速搜索" class="but" />
+			<div class="lbox"></div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+$(document).ready(function(){
+		var arr=[
+			'安徽工业大学',"阜阳师范大学信息工程学院",
+
+			"安徽理工大学","安徽农业大学","安徽医科大学","安徽师范大学",
+
+			"淮北师范大学","安徽中医药大学","安庆师范大学",
+
+			"阜阳师范大学","蚌埠医学院","皖南医学院","淮南师范学院",
+
+			"安徽科技学院","皖西学院","合肥学院","黄山学院",
+
+			"巢湖学院","铜陵学院","滁州学院","宿州学院",
+
+			"合肥师范学院","蚌埠学院", "池州学院","亳州学院",
+
+			"安徽艺术学院","安徽新华学院","安徽三联学院","安徽文达信息工程学院",
+
+			"安徽外国语学院","安徽信息工程学院","皖江工学院","马鞍山学院",
+
+			"芜湖学院",	"合肥经济学院","合肥城市学院","安徽医科大学临床医学院",
+			
+			"淮北理工学院","蚌埠工商学院","安徽建筑大学",
+			
+			"安徽省招生考试院","阳光高考",
+
+			"查找专业大类",
+			
+			'招生简章快查',
+			
+			"ChatGPT翻版"
+		]
+		var str=[
+			"http://zs.ahut.edu.cn/","http://cie.fynu.edu.cn/admission/lists/?id=715",
+
+			"https://zs.aust.edu.cn/","https://zsb.ahau.edu.cn/tzgg.htm","https://zs.ahmu.edu.cn/tzgg/list.htm","https://zsxx.ahnu.edu.cn/zsxx/tzgg.htm",
+
+			"https://zsb.chnu.edu.cn/","http://bkzs.ahtcm.edu.cn/","http://zsw.aqnu.edu.cn/",
+
+			"http://www.fynu.edu.cn/bkzsxxw/tzgg.htm","https://zsw.bbmc.edu.cn/","https://zsb.wnmc.edu.cn/","http://zsb.hnnu.edu.cn/",
+
+			"https://www.ahstu.edu.cn/zs/","https://zsb.wxc.edu.cn/","https://www.hfuu.edu.cn/zs/","https://zsb.hsu.edu.cn/",
+
+			"https://www.chu.edu.cn/zsw/","https://www.tlu.edu.cn/zsgz/list.htm","https://zsw.chzu.edu.cn/","http://www.ahszu.edu.cn/zs/",
+			
+			"http://zsb.hfnu.edu.cn/","http://zhaoban.bbc.edu.cn/","https://zs.czu.edu.cn/","http://www.bzuu.edu.cn/zzxx/",
+
+			"http://www.ahua.edu.cn/zsw/","https://zhaosheng.axhu.edu.cn/","https://zsb.slu.edu.cn/","http://www.wenda.edu.cn/zs/",
+			
+			"http://www.aisu.edu.cn/zsb/","https://zsxx.aiit.edu.cn/","https://www.wjut.edu.cn/zhao-sheng-zhuan-ti/","http://zs.masu.edu.cn/",
+			
+			"https://www.uwh.edu.cn/zsw","http://www.hfue.edu.cn/zsw//index.html","https://www.cuhf.edu.cn/zsb/","https://cc.ahmu.edu.cn/zhaosheng/",
+
+			"https://zsb.hblgxy.edu.cn/","https://zs.bctb.edu.cn/","http://www.ahjzu.edu.cn/zsw/",
+			
+			"https://www.ahzsks.cn/zyyx/","https://gaokao.chsi.com.cn/",
+
+			"https://cloud.seatable.cn/external-apps/363b0e2a-eed2-44cc-ad88-e9b72cea14d9/",
+			
+			"https://cloud.seatable.cn/external-apps/c91029ba-e240-4f8e-9cbd-a25079e2b7f2/",
+			
+			"https://www.aigcfun.com/"
+		]
+		arr1=arr[0];
+		console.log("若有疑问请添加微信：Codedocky")
+		function search(){
+		var search=$('.search').val()
+		for(var i=0;i<arr.length;i++){
+		    if(search==arr[i]){
+    		    window.location.href=str[i]
+		        }
+		    }
+		}
+		
+		
+		$('.search').keydown(function(event){
+		if(event.keyCode==13){
+		    search()
+			$(this).val('')
+	       	}
+	    }) 
+	    
+	    
+         $('.but').click(function(){
+			    search()
+		 })
+
+    for(var j=0;j<arr.length;j++){
+        $('.lbox').append("<li><a href='"+str[j]+"' target='_blank'>"+arr[j]+"</a></li>")
+    }
+        
+      //keypress 测试search的值
+     $('.search').keydown(function(event){
+         if(event.keyCode==32){
+             alert($('.search').val())
+         }
+     })
+         
+         
+         
+         
+})
+</script>
